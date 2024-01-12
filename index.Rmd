@@ -1,0 +1,52 @@
+---
+title: "Visualizing morphological data (EvalMo 2024)"
+author: Stefan Hartmann
+output: 
+  html_document:
+    theme: flatly
+    highlight: tango
+    toc: true
+    toc_float: true
+    collapsed: false
+    df_print: paged
+    fig_caption: false
+---
+
+## Welcome!
+
+<img alt="Some plots" src="graph-3068300_1280.jpg" width="60%"/>
+
+This website contains materials for the workshop "Visualizing morphological data" (Berlin, March 2024). It is currently still work-in-progress, please check back soon. (To be sure that you're seeing the most up-to-date version of the page, use [Shift+Refresh](https://www.howtogeek.com/672607/how-to-hard-refresh-your-web-browser-to-bypass-your-cache/)).
+
+
+## Installing R and RStudio
+
+Please make sure that you have installed [R](https://www.r-project.org/) and [RStudio](https://posit.co/download/rstudio-desktop/) before the tutorial begins. Installation is easy and more or less self-explanatory. There are also good tutorials out there, e.g. [here](https://rstudio-education.github.io/hopr/starting.html) in text form, or [here](https://milton-the-cat.rocks/learnr/r/r_getting_started/#section-installing-r-and-rstudio) as a video tutorial.
+
+Please also make sure that you can install and load packages without problems, and that you can read in datasets. You can do so using the following code:
+
+```{r, eval=FALSE}
+
+# install a package
+install.packages("tidyverse")
+
+# load a package
+library("tidyverse")
+
+# read a dataset (internet connection required, obviously)
+d <- read_delim("https://osf.io/download/b5fcn/", delim = "\t")
+
+# check the structure of the dataset
+d
+
+
+```
+
+## Datasets
+
+I will provide a number of authentic datasets. However, to make the workshop even more relevant and to make the problems we discuss more authentic, participants are also cordially invited to send me their own datasets if they would like to discuss visualization options during the workshop!
+
+
+## Materials etc.
+
+More coming soon!
