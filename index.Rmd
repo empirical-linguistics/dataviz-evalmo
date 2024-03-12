@@ -47,9 +47,11 @@ d
 I will provide a number of authentic datasets. However, to make the workshop even more relevant and to make the problems we discuss more authentic, participants are also cordially invited to send me their own datasets if they would like to discuss visualization options during the workshop!
 
 
-## Materials etc.
+## Materials
 
 Example datasets can be found at the [Github site](https://github.com/empirical-linguistics/dataviz-evalmo) (folder "data"). You can also find some example R scripts there.
+
+The current (unfinished) version of the workshop slides can be found [here](https://empirical-linguistics.github.io/dataviz-evalmo/Visualizing%20morphological%20data.pdf)
 
 
 
