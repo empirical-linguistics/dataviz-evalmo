@@ -16,7 +16,7 @@ output:
 
 <img alt="Some plots" src="graph-3068300_1280.jpg" width="60%"/>
 
-This website contains materials for the workshop "Visualizing morphological data" (Berlin, March 2024). It is currently still work-in-progress, please check back soon. (To be sure that you're seeing the most up-to-date version of the page, use [Shift+Refresh](https://www.howtogeek.com/672607/how-to-hard-refresh-your-web-browser-to-bypass-your-cache/)).
+This website contains materials for the workshop "Visualizing morphological data" (Berlin, March 2024). 
 
 
 ## Installing R and RStudio
@@ -31,7 +31,7 @@ Please also make sure that you can install and load packages without problems, a
 install.packages("tidyverse")
 
 # load a package
-library("tidyverse")
+library(tidyverse)
 
 # read a dataset (internet connection required, obviously)
 d <- read_delim("https://osf.io/download/b5fcn/", delim = "\t")
@@ -49,4 +49,7 @@ I will provide a number of authentic datasets. However, to make the workshop eve
 
 ## Materials etc.
 
-More coming soon!
+Example datasets can be found at the [Github site][https://github.com/empirical-linguistics/dataviz-evalmo] (folder "data"). You can also find some example R scripts there.
+
+
+
