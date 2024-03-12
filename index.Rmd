@@ -49,7 +49,7 @@ I will provide a number of authentic datasets. However, to make the workshop eve
 
 ## Materials etc.
 
-Example datasets can be found at the [Github site][https://github.com/empirical-linguistics/dataviz-evalmo] (folder "data"). You can also find some example R scripts there.
+Example datasets can be found at the [Github site](https://github.com/empirical-linguistics/dataviz-evalmo) (folder "data"). You can also find some example R scripts there.
 
 
 
