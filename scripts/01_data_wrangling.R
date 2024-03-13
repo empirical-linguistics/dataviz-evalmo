@@ -126,5 +126,24 @@ d %>% group_by(file_decade, file_genre, Variant) %>% summarise(
   geom_col(position = "dodge") + facet_wrap(~file_genre)
 
 
+###############################
+## "long" vs. "wide" format ###
+###############################
 
+# read dataset
+rts <- read_xlsx("../data/fake_RT_data.xlsx")
 
+# inspect data
+rts
+
+# use pivot_longer()
+?pivot_longer # show help file
+colnames(rts) # show column names: we need them
+              # as input for pivot_longer
+rts2 <- pivot_longer(rts, cols = starts_with("ReactionTime_"),
+             names_prefix="ReactionTime_Condition",
+             names_to="Condition", values_to = "RT")
+
+# this can be used as input for a ggplot!
+ggplot(rts2, aes(x = Condition, y = RT)) + 
+  geom_boxplot()
