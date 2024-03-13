@@ -82,7 +82,7 @@ ggplot(d_tbl, aes(x = Decade, y = pp,
   
 # or:
 
-ggplot(d_tbl, aes(x = Decade, y = pp, 
+p <- ggplot(d_tbl, aes(x = Decade, y = pp, 
                   group = 1, 
                   col = Text_Type)) +
   geom_point() +
@@ -90,5 +90,54 @@ ggplot(d_tbl, aes(x = Decade, y = pp,
   facet_wrap(~Text_Type) +
   guides(col = "none") +
   theme(axis.text.x = element_text(angle=45, hjust=.9, size=12)) +
-  ylab("Potential Productivity")
+  ylab("Potential Productivity") 
   
+p + theme(axis.text = element_text(size = 18)) +
+theme(axis.title = element_text(size = 18)) +
+theme(strip.text = element_text(size = 18)) +
+theme(legend.text = element_text(size = 18)) +
+theme(legend.title = element_text(size = 18, face = "bold")) +
+theme(text = element_text(size = 18))
+
+# play with plot elements
+ui <- fluidPage(
+  
+  sliderInput(inputId = "mysize", 
+               label = "axis.title",
+               value = 10, min = 0, max = 100, step = 10), 
+  
+  sliderInput(inputId = "mysize2", 
+              label = "axis.text.x",
+              value = 10, min = 0, max = 100, step = 10),
+  
+  sliderInput(inputId = "mysize2b", 
+              label = "axis.text.y",
+              value = 10, min = 0, max = 100, step = 10),
+  
+  sliderInput(inputId = "mysize3", 
+              label = "strip.text",
+              value = 10, min = 0, max = 100, step = 10), 
+  
+  
+  plotOutput(outputId = "our_first_reactive_plot")
+  
+)
+
+server <- function(input, output) {
+  
+  
+  output$our_first_reactive_plot <- renderPlot({
+    
+    p +
+      theme(axis.title = element_text(size = input$mysize)) +
+      theme(axis.text.x = element_text(size = input$mysize2)) +
+      theme(axis.text.y = element_text(size = input$mysize2b)) +
+      theme(strip.text = element_text(size = input$mysize3)) 
+    
+  })
+  
+}
+
+shinyApp(ui = ui, server = server)
+
+
