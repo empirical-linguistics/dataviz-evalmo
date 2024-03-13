@@ -87,6 +87,26 @@ get_squareroot <- function(range) {
 sapply(1:100, function(i) sqrt(i))
 
 
+# making replacements: gsub
+mytext <- "This text contains an error."
+gsub("an", "not a single", mytext)
+
+
+# making a table
+my_fruits <- c("apple", "apple", "orange", "apple", 
+               "pear", "orange", "pear")
+table(my_fruits)
+as.data.frame(table(my_fruits))
+
+
+# dplyr's summarise command
+my_fruits2 <- tibble(fruit = my_fruits,
+       state = c(rep("rotten", 4), rep("fresh", 3)))
+
+my_fruits2 %>% group_by(fruit, state) %>% summarise(
+  n = n()
+)
+
 
 ######################################
 ## concrete application:  chen/lein ##
