@@ -20,7 +20,11 @@ colnames(d2)
 # So we have to remove this using the replacement
 # (substitute) command gsub():
 
-d1 <- mutate(d1, ID = gsub("text_name ", "", d1$Text_Name))
+d1$ID <- gsub("text_name ", "", d1$Text_Name)
+# or:
+#d1 <- mutate(d1, ID = gsub("text_name ", "", d1$Text_Name))
+
+intersect(colnames(d1),colnames(d2))
 
 # now we can easily join the datasets:
 d <- left_join(d1,d2)
@@ -43,8 +47,13 @@ d$Decade <- gsub(".$", "5", d$Year)
 unique(d$Decade) %>% sort # looks good
 
 # get hapax legomena
-hapaxes <- as.data.frame(table(d$Lemma)) %>% 
-  filter(Freq == 1) %>% select(Var1)
+hapaxes <- table(d$Lemma) %>% 
+  as.data.frame %>% filter(Freq == 1) %>% select(Var1)
+
+
+
+# hapaxes <- as.data.frame(table(d$Lemma)) %>% 
+#   filter(Freq == 1) %>% select(Var1)
 
 # note that it is still a df!
 str(hapaxes)
@@ -53,26 +62,50 @@ str(hapaxes)
 hapaxes <- as.vector(hapaxes[['Var1']])
 
 # or:
+# hapaxes %>% unlist %>% unname %>% as.character()
+
+# or:
 #hapaxes <- as_tibble(table(d$Lemma), .name_repair = "unique") %>%
  # setNames(c("Lemma", "Freq")) %>% select(Lemma) %>% as.vector()
 
 
 
-
 # summarise
 d_tbl <- d %>% group_by(Decade, Text_Type) %>% summarise(
-  number_of_types  = length(unique(Lemma)),
+  number_of_types = length(unique(Lemma)),
   number_of_tokens = n(),
   number_of_hapaxes = length(which(Lemma %in% hapaxes)),
   ttr = number_of_types / number_of_tokens,
   pp = number_of_hapaxes / number_of_tokens
 )
 
+
+# d_tbl <- d %>% group_by(Decade, Text_Type) %>% summarise(
+#   number_of_types  = length(unique(Lemma)),
+#   number_of_tokens = n(),
+#   number_of_hapaxes = length(which(Lemma %in% hapaxes)),
+#   ttr = number_of_types / number_of_tokens,
+#   pp = number_of_hapaxes / number_of_tokens
+# )
+
 # as above, remove the "text_texttype " from
 # the Text_Type column:
 d_tbl$Text_Type <- gsub("text_texttype ", "", d_tbl$Text_Type)
 
 # visualize productivity development
+ggplot(d_tbl, aes(x = as.numeric(Decade), y = pp, group = 1,
+                  col = Text_Type)) +
+  geom_point() +
+  geom_line() + facet_wrap(~Text_Type) +
+  guides(col = "none") +
+  geom_smooth(alpha = .2) +
+  theme(axis.text.x = element_text(angle=45, hjust=.9, size=12)) +
+  scale_x_continuous(breaks = seq(1600,1900,50))
+  
+
+
+
+
 
 ggplot(d_tbl, aes(x = Decade, y = pp, 
                   col = Text_Type, 
